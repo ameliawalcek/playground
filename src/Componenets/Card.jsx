@@ -6,13 +6,15 @@ export const Card = ({ card }) => {
     let { selected, setSelected } = useContext(SelectedContext)
 
     const handleClick = () => {
-        const updateCards = cards.map(c => {
-            return c.id === card.id
-                ? { ...c, active: true }
-                : c
-        })
-        setCards(updateCards)
-        setSelected([...selected, card.color])
+        if(!card.active && !card.match){
+            const updateCards = cards.map(c => {
+                return c.id === card.id
+                    ? { ...c, active: true }
+                    : c
+            })
+            setCards(updateCards)
+            setSelected([...selected, card.color])
+        }
     }
 
     return (
@@ -21,7 +23,7 @@ export const Card = ({ card }) => {
                 style={{
                     height: '50px',
                     width: '50px',
-                    backgroundColor: card.active ? card.color : 'grey',
+                    backgroundColor: card.active || card.match ? card.color : 'grey',
                 }}
                 onClick={handleClick}
             >

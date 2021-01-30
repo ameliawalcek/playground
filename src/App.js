@@ -9,14 +9,14 @@ function App() {
   const [selected, setSelected] = useState([])
 
   const options = [
-    { color: '#000000', active: false, match: false },
-    { color: '#2A1A1F', active: false, match: false },
-    { color: '#764134', active: false, match: false },
-    { color: '#AD8350', active: false, match: false },
-    { color: '#AFA060', active: false, match: false },
-    { color: '#B084CC', active: false, match: false },
-    { color: '#5DD9C1', active: false, match: false },
-    { color: '#ACFCD9', active: false, match: false }
+    { color: '#DE3C4B', active: false, match: false },
+    { color: '#E28413', active: false, match: false },
+    { color: '#30C5FF', active: false, match: false },
+    { color: '#52FFB8', active: false, match: false },
+    { color: '#070600', active: false, match: false },
+    { color: '#F4E409', active: false, match: false },
+    { color: '#802392', active: false, match: false },
+    { color: '#496DDB', active: false, match: false }
   ]
 
   const shuffle = array => array.sort(() => Math.random() - 0.5)
@@ -35,27 +35,28 @@ function App() {
   const isMatch = () => new Set(selected).size !== selected.length
 
   if (selected.length === 2) {
-    if (isMatch()) {
-      console.log('match')
-      const updateCards = cards.map(c => {
-        return c.color === selected[0]
-          ? { ...c, active: false, match: true }
-          : c
-      })
-      setCards(updateCards)
-      
-    } else {
-      const reset = cards.map(card => ({ ...card, active: false }))
-      setCards(reset)
-    }
     setSelected([])
+    setTimeout(() => {
+      if (isMatch()) {
+        const updateCards = cards.map(c => {
+          return c.color === selected[0]
+            ? { ...c, active: false, match: true }
+            : c
+        })
+        setCards(updateCards)
+
+      } else {
+        const reset = cards.map(card => ({ ...card, active: false }))
+        setCards(reset)
+      }
+    }, 400)
   }
 
   return (
     <CardContext.Provider value={{ cards, setCards }}>
       <SelectedContext.Provider value={{ selected, setSelected }}>
         <div className="App">Memory game
-      <div className='board'>
+          <div className='board'>
             {cards.map(card => <Card card={card} key={Math.random()} />)}
           </div>
         </div>
