@@ -1,9 +1,13 @@
 import React from 'react'
+import { Calculator } from './components/Calculator/Calculator'
 
 function App() {
 
   return (
-    <div className="App">Playground!</div>
+    <>
+      <div className="App">Calculator!</div>
+      <Calculator />
+    </>
   )
 }
 
