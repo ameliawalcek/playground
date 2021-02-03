@@ -3,6 +3,6 @@ import React from 'react'
 export const Button = ({ button, handleOperation }) => {
 
     return (
-        <div onClick={() => handleOperation(button)}>{button}</div>
+        <li onClick={() => handleOperation(button)}>{button}</li>
     )
 }

@@ -1,52 +1,67 @@
-import { ADD, CLEAR, DIVIDE, EQUAL, MULTIPLY, OPERATION, SUBTRACT } from "../constants/constants"
+import { ADD, CLEAR, DIVIDE, EQUAL, MULTIPLY, OPERATION, SUBTRACT, INITIATE } from "../constants/constants"
 
 function reducer(state, action) {
-    const { total } = state
-
+    console.log(action.payload)
     switch (action.type) {
+        case INITIATE: {
+            return {
+                ...state,
+                initialInput: action.payload,
+                total: action.payload,
+                equal: false
+            }
+        }
         case CLEAR: {
             return {
                 ...state,
-                total: 0
+                initialize: false,
+                initialInput: 0,
+                total: 0,
+                equal: false
             }
         }
         case OPERATION: {
+            const { value, input, operation } = action.payload
             let newState
-            console.log(action.payload)
-            switch (action.payload.operation) {
-                
+
+            switch (operation) {
                 case ADD: {
-                    console.log('hello')
                     newState = {
                         ...state,
-                        total: total + action.payload.input
+                        initialize: true,
+                        total: value + input
                     }
                     break
                 }
                 case SUBTRACT: {
                     newState = {
                         ...state,
-                        total: total - action.payload.input
+                        initialize: true,
+                        total: value - input
                     }
                     break
                 }
                 case MULTIPLY: {
                     newState = {
                         ...state,
-                        total: total * action.payload.input
+                        initialize: true,
+                        total: value * input
                     }
                     break
                 }
                 case DIVIDE: {
                     newState = {
                         ...state,
-                        total: total / action.payload.input
+                        initialize: true,
+                        total: value / input
                     }
                     break
                 }
                 case EQUAL: {
                     newState = {
                         ...state,
+                        initialInput: 0,
+                        initialize: false,
                         equal: true
                     }
                     break

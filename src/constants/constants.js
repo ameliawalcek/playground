@@ -1,17 +1,20 @@
 
 export const INITIAL_STATE = {
     total: 0,
-    clear: false,
+    initialInput: 0,
+    initialize: false,
     equal: false
 }
 
+export const INITIATE = 'INITIATE'
+export const OPERATION = 'OPERATION'
 export const ADD = '+'
 export const SUBTRACT = '-'
-export const MULTIPLY = 'X'
+export const MULTIPLY = '*'
 export const DIVIDE = '/'
-export const OPERATION = 'OPERATION'
+export const DECIMAL = '.'
 
 export const EQUAL = '='
-export const CLEAR = 'CLEAR'
+export const CLEAR = 'C'
 
-export const BUTTONS = [CLEAR, EQUAL, ADD, SUBTRACT, MULTIPLY, DIVIDE, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+export const BUTTONS = [CLEAR, MULTIPLY, DIVIDE, DECIMAL, 7, 8, 9, ADD, 4, 5, 6, SUBTRACT, 1, 2, 3, EQUAL, 0]
